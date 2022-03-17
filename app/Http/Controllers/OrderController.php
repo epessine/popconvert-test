@@ -9,7 +9,9 @@ class OrderController extends Controller
 {
     public function create()
     {
-        return view('orders.create');
+        $articles = Article::factory(10)->make();
+
+        return view('orders.create', compact('articles'));
     }
 
     public function store(Request $request)
