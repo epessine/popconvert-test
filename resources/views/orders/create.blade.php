@@ -12,7 +12,12 @@
 
     <body class="antialiased">
 
-        <div id="app"></div>
+        <div id="app">
+
+            <orders-create title="@lang('Create an order')"
+                           end-point="{{ route('orders.store') }}" />
+
+        </div>
 
     </body>
 </html>
