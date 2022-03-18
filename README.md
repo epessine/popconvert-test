@@ -26,4 +26,5 @@ sail npm i
 
 sail npm run dev
 ```
+After the app is running, you can go to the '/' endpoint to access the homepage.
 
