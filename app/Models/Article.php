@@ -25,11 +25,11 @@ class Article extends Model
         'total_price_with_discount',
     ];
 
-    public function setTotalPrice(): void
+    public function setTotalPrice(): self
     {
         if (!$this->quantity) {
             $this->total_price = $this->total_price_with_discount = 0;
-            return;
+            return $this;
         }
 
         $this->total_price = $this->unit_price * $this->quantity;
@@ -40,5 +40,7 @@ class Article extends Model
         $this->total_price_with_discount = $hasDiscount
             ? $this->total_price * 0.85
             : $this->total_price;
+
+        return $this;
     }
 }

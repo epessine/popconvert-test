@@ -46,18 +46,18 @@ class OrderController extends Controller
                     'quantity'   => data_get($rawArticle, 'Quantity'),
                 ]);
 
-                $article->setTotalPrice();
+                $isNew = true;
 
-                $articles->each(function (&$existingArticle) use (&$article, &$articles) {
+                $articles->each(function (Article &$existingArticle) use (&$article, &$isNew) {
                     if ($existingArticle->code === $article->code) {
+                        $isNew = false;
                         $existingArticle->quantity++;
                         $existingArticle->setTotalPrice();
-                    } else {
-                        $articles->push($article);
                     }
                 });
 
-                if ($articles->isEmpty()) {
+                if ($articles->isEmpty() || $isNew) {
+                    $article->setTotalPrice();
                     $articles->push($article);
                 }
             }
@@ -74,9 +74,9 @@ class OrderController extends Controller
 
             $order->update([
                 'code' => "{$order->created_at->format('Y-m')}-OrderId",
-                'total' => round($articles->sum(fn ($article) => $article->total_price), 2),
+                'total' => round($articles->sum(fn (Article $article) => $article->total_price), 2),
                 'total_with_discount' => round($articles->sum(
-                    fn ($article) => $article->total_price_with_discount
+                    fn (Article $article) => $article->total_price_with_discount
                 ), 2),
             ]);
         } catch (\Throwable $th) {
