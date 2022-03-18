@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::resource('orders', OrderController::class)->only(['create']);
+Route::resource('orders', OrderController::class)->only(['create', 'index']);

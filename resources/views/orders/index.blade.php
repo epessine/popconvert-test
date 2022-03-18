@@ -7,16 +7,15 @@
         <title>Popconvert - Test</title>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        
+
         <script defer src="{{ asset('js/app.js') }}"></script>
     </head>
 
     <body class="antialiased">
 
         <div id="app">
-            
-            <home link="{{ route('orders.create') }}"
-                  text="@lang('Create an order')" />
+
+            <orders-index :orders="@js($orders)" />
 
         </div>
 

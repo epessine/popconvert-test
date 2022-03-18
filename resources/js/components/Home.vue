@@ -6,8 +6,12 @@
                     <div class="card-header">Welcome</div>
 
                     <div class="card-body">
-                        <a :href="link">
-                            {{ text }}
+                        <a href="/orders/create">
+                            Create Order
+                        </a>
+
+                        <a href="/orders">
+                            See Orders
                         </a>
                     </div>
                 </div>
@@ -15,15 +19,6 @@
         </div>
     </div>
 </template>
-
-<script>
-    export default {
-        props: {
-            link: '',
-            text: '',
-        }
-    }
-</script>
 
 <style scoped lang="css">
     .container {

@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->float('total');
-            $table->float('total_with_discount');
+            $table->string('code')->nullable();
+            $table->float('total')->nullable();
+            $table->float('total_with_discount')->nullable();
             $table->timestamps();
         });
     }

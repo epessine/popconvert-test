@@ -7,7 +7,9 @@
         <title>Popconvert - Test</title>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
         <script defer src="{{ asset('js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
 
     <body class="antialiased">
@@ -15,7 +17,8 @@
         <div id="app">
 
             <orders-create title="@lang('Create an order')"
-                           end-point="{{ route('orders.store') }}" />
+                           end-point="{{ route('orders.store') }}"
+                           :articles="@js($articles)" />
 
         </div>
 
